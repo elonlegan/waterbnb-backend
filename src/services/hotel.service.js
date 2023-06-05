@@ -8,8 +8,10 @@ module.exports = {
 	delete: _delete,
 };
 
-async function getAll() {
-	const hotels = await db.Hotel.find().populate('rooms');
+async function getAll(userId) {
+	const hotels = await db.Hotel.find({
+		owner: userId,
+	}).populate('rooms');
 	return hotels;
 }
 async function getById(id) {
@@ -17,7 +19,7 @@ async function getById(id) {
 	return hotel;
 }
 
-async function create(params) {
+async function create(params, user) {
 	// validate
 	if (await db.Hotel.findOne({ name: params.name })) {
 		throw 'Hotel "' + params.name + '" is already created';
@@ -25,7 +27,7 @@ async function create(params) {
 
 	const hotel = new db.Hotel(params);
 
-	console.log('hotel', hotel);
+	hotel.owner = user.id;
 
 	// save hotel
 	await hotel.save();

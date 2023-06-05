@@ -7,7 +7,7 @@ const Role = require('../helpers/role');
 const hotelController = require('../controllers/hotel.controller');
 
 // routes
-router.get('/', hotelController.getAll);
+router.get('/', authorize(), hotelController.getAll);
 
 router.get(
 	'/:id',

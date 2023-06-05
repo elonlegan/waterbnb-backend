@@ -12,10 +12,12 @@ router.get('/', roomController.getAll);
 router.get('/room-types', roomController.getRoomTypes);
 
 router.get(
-	'/:id',
-	authorize([Role.Admin, Role.TravelAgency]),
-	roomController.getById
+	'/search',
+	authorize(),
+	roomController.searchForBook
 );
+
+router.get('/:id', authorize(), roomController.getById);
 
 router.get(
 	'/hotel/:hotelId',

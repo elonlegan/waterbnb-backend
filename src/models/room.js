@@ -29,6 +29,10 @@ const schema = new Schema(
 			type: Number,
 			required: true,
 		},
+		maxHost: {
+			type: Number,
+			required: true,
+		},
 		description: {
 			type: String,
 			required: false,
@@ -39,6 +43,9 @@ const schema = new Schema(
 				'https://latarta.com.co/wp-content/uploads/2018/06/default-placeholder.png',
 		},
 		hotel: { type: Schema.Types.ObjectId, ref: 'Hotel' },
+		bookings: [
+			{ type: Schema.Types.ObjectId, ref: 'Booking' },
+		],
 	},
 	{ timestamps: true, versionKey: false }
 );

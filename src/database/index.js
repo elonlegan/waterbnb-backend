@@ -15,6 +15,7 @@ module.exports = {
 	Account: require('../models/account'),
 	Hotel: require('../models/hotel'),
 	Room: require('../models/room'),
+	Booking: require('../models/booking'),
 	RefreshToken: require('../models/refresh-token'),
 	isValidId,
 };

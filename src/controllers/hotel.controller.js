@@ -14,7 +14,7 @@ module.exports = {
 
 function getAll(req, res, next) {
 	hotelService
-		.getAll()
+		.getAll(req.user.id)
 		.then((hotels) => res.json(hotels))
 		.catch(next);
 }
@@ -40,7 +40,7 @@ function createSchema(req, res, next) {
 
 function create(req, res, next) {
 	hotelService
-		.create(req.body)
+		.create(req.body, req.user)
 		.then((hotel) => res.json(hotel))
 		.catch(next);
 }

@@ -5,6 +5,7 @@ module.exports = {
 	getAll,
 	getById,
 	getByHotelId,
+	searchForBook,
 	getRoomTypes,
 	create,
 	update,
@@ -21,6 +22,15 @@ async function getById(id) {
 }
 async function getByHotelId(hotelId) {
 	const rooms = await db.Room.find({ hotel: hotelId });
+	return rooms;
+}
+async function searchForBook(params) {
+	const rooms = await db.Room.find({
+		city: params.city,
+		hostMax: {
+			$gt: params.hostNumber,
+		},
+	}).populate('bookings');
 	return rooms;
 }
 async function getRoomTypes() {

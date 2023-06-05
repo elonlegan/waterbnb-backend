@@ -14,6 +14,7 @@ const schema = new Schema(
 			default:
 				'https://latarta.com.co/wp-content/uploads/2018/06/default-placeholder.png',
 		},
+		owner: { type: Schema.Types.ObjectId, ref: 'Account' },
 		rooms: [{ type: Schema.Types.ObjectId, ref: 'Room' }],
 	},
 	{ timestamps: true, versionKey: false }

@@ -6,6 +6,7 @@ module.exports = {
 	getAll,
 	getById,
 	getByHotelId,
+	searchForBook,
 	getRoomTypes,
 	createSchema,
 	create,
@@ -36,6 +37,13 @@ function getByHotelId(req, res, next) {
 		.then((rooms) => res.json(rooms))
 		.catch(next);
 }
+
+function searchForBook(req, res, next) {
+	roomService
+		.searchForBook(req.query)
+		.then((rooms) => res.json(rooms))
+		.catch(next);
+}
 function getRoomTypes(req, res, next) {
 	roomService
 		.getRoomTypes()
@@ -52,6 +60,7 @@ function createSchema(req, res, next) {
 		type: Joi.string().required(),
 		address: Joi.string().required(),
 		price: Joi.number().min(1).required(),
+		maxHost: Joi.number().min(1).required(),
 		hotel: Joi.string().required(),
 		imageUrl: Joi.string().empty('').optional(),
 		description: Joi.string().empty('').optional(),
@@ -75,6 +84,7 @@ function updateSchema(req, res, next) {
 		type: Joi.string().empty(''),
 		address: Joi.string().empty(''),
 		price: Joi.number().min(1).empty(''),
+		maxHost: Joi.number().min(1).empty(''),
 		imageUrl: Joi.string().empty(''),
 		description: Joi.string().empty(''),
 	});
