@@ -19,8 +19,8 @@ async function getById(id) {
 
 async function create(params) {
 	// validate
-	if (await db.Hotel.findOne({ title: params.title })) {
-		throw 'Hotel "' + params.title + '" is already created';
+	if (await db.Hotel.findOne({ name: params.name })) {
+		throw 'Hotel "' + params.name + '" is already created';
 	}
 
 	const hotel = new db.Hotel(params);
@@ -36,10 +36,10 @@ async function create(params) {
 async function update(id, params) {
 	// validate
 	const hotelExist = await db.Hotel.findOne({
-		title: params.title,
+		name: params.name,
 	});
 	if (hotelExist && hotelExist.id !== id) {
-		throw 'Hotel "' + params.title + '" is already created';
+		throw 'Hotel "' + params.name + '" is already created';
 	}
 	const hotel = await getHotel(id);
 

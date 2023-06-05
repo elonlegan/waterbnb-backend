@@ -5,6 +5,8 @@ const validateRequest = require('../middleware/validate-request');
 module.exports = {
 	getAll,
 	getById,
+	getByHotelId,
+	getRoomTypes,
 	createSchema,
 	create,
 	updateSchema,
@@ -28,9 +30,29 @@ function getById(req, res, next) {
 		.catch(next);
 }
 
+function getByHotelId(req, res, next) {
+	roomService
+		.getByHotelId(req.params.hotelId)
+		.then((rooms) => res.json(rooms))
+		.catch(next);
+}
+function getRoomTypes(req, res, next) {
+	roomService
+		.getRoomTypes()
+		.then((roomTypes) => res.json(roomTypes))
+		.catch(next);
+}
+
 function createSchema(req, res, next) {
 	const schema = Joi.object({
 		name: Joi.string().required(),
+		country: Joi.string().required(),
+		state: Joi.string().required(),
+		city: Joi.string().required(),
+		type: Joi.string().required(),
+		address: Joi.string().required(),
+		price: Joi.number().min(1).required(),
+		hotel: Joi.string().required(),
 		imageUrl: Joi.string().empty('').optional(),
 		description: Joi.string().empty('').optional(),
 	});
@@ -47,6 +69,12 @@ function create(req, res, next) {
 function updateSchema(req, res, next) {
 	const schema = Joi.object({
 		name: Joi.string().empty(''),
+		country: Joi.string().empty(''),
+		state: Joi.string().empty(''),
+		city: Joi.string().empty(''),
+		type: Joi.string().empty(''),
+		address: Joi.string().empty(''),
+		price: Joi.number().min(1).empty(''),
 		imageUrl: Joi.string().empty(''),
 		description: Joi.string().empty(''),
 	});

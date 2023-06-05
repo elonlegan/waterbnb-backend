@@ -11,27 +11,27 @@ router.get('/', hotelController.getAll);
 
 router.get(
 	'/:id',
-	authorize(Role.Admin),
+	authorize([Role.Admin, Role.TravelAgency]),
 	hotelController.getById
 );
 
 router.post(
 	'/',
-	authorize(Role.Admin),
+	authorize([Role.Admin, Role.TravelAgency]),
 	hotelController.createSchema,
 	hotelController.create
 );
 
 router.put(
 	'/:id',
-	authorize(Role.Admin),
+	authorize([Role.Admin, Role.TravelAgency]),
 	hotelController.updateSchema,
 	hotelController.update
 );
 
 router.delete(
 	'/:id',
-	authorize(Role.Admin),
+	authorize([Role.Admin, Role.TravelAgency]),
 	hotelController.delete
 );
 

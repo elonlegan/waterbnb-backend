@@ -9,29 +9,37 @@ const roomController = require('../controllers/room.controller');
 // routes
 router.get('/', roomController.getAll);
 
+router.get('/room-types', roomController.getRoomTypes);
+
 router.get(
 	'/:id',
-	authorize(Role.Admin),
+	authorize([Role.Admin, Role.TravelAgency]),
 	roomController.getById
+);
+
+router.get(
+	'/hotel/:hotelId',
+	authorize([Role.Admin, Role.TravelAgency]),
+	roomController.getByHotelId
 );
 
 router.post(
 	'/',
-	authorize(Role.Admin),
+	authorize([Role.Admin, Role.TravelAgency]),
 	roomController.createSchema,
 	roomController.create
 );
 
 router.put(
 	'/:id',
-	authorize(Role.Admin),
+	authorize([Role.Admin, Role.TravelAgency]),
 	roomController.updateSchema,
 	roomController.update
 );
 
 router.delete(
 	'/:id',
-	authorize(Role.Admin),
+	authorize([Role.Admin, Role.TravelAgency]),
 	roomController.delete
 );
 
