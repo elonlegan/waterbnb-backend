@@ -7,11 +7,7 @@ const Role = require('../helpers/role');
 const bookingController = require('../controllers/booking.controller');
 
 // routes
-router.get(
-	'/',
-	authorize([Role.Admin, Role.TravelAgency]),
-	bookingController.getAll
-);
+router.get('/', authorize([]), bookingController.getAll);
 
 router.get('/:id', authorize(), bookingController.getById);
 

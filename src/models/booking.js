@@ -36,6 +36,7 @@ const schema = new Schema(
 		],
 		arrivalDate: { type: Date, required: true },
 		departureDate: { type: Date, required: true },
+		owner: { type: Schema.Types.ObjectId, ref: 'Account' },
 		room: { type: Schema.Types.ObjectId, ref: 'Room' },
 	},
 	{ timestamps: true, versionKey: false }

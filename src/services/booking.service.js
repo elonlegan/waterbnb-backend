@@ -9,8 +9,16 @@ module.exports = {
 	delete: _delete,
 };
 
-async function getAll() {
-	const bookings = await db.Booking.find();
+async function getAll(userId) {
+	const bookings = await db.Booking.find({
+		$or: [
+			{ 'room.hotel.owner': userId },
+			{ owner: userId },
+		],
+	}).populate({
+		path: 'room',
+		populate: { path: 'hotel' },
+	});
 	return bookings;
 }
 async function getById(id) {
@@ -20,15 +28,16 @@ async function getById(id) {
 async function getByRoomId(hotelId) {
 	const bookings = await db.Booking.find({
 		room: hotelId,
-	});
+	}).populate('room');
 	return bookings;
 }
 
-async function create(params) {
+async function create(params, userId) {
 	const booking = new db.Booking(params);
 
 	let room = await getRoom(params.room);
 
+	booking.owner = userId;
 	booking.room = room;
 	room.bookings = [...room.bookings, booking];
 

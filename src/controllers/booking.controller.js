@@ -16,7 +16,7 @@ module.exports = {
 
 function getAll(req, res, next) {
 	bookingService
-		.getAll()
+		.getAll(req.user.id)
 		.then((bookings) => res.json(bookings))
 		.catch(next);
 }
@@ -56,7 +56,7 @@ function createSchema(req, res, next) {
 
 function create(req, res, next) {
 	bookingService
-		.create(req.body)
+		.create(req.body, req.user.id)
 		.then((booking) => res.json(booking))
 		.catch(next);
 }

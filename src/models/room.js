@@ -42,6 +42,10 @@ const schema = new Schema(
 			default:
 				'https://latarta.com.co/wp-content/uploads/2018/06/default-placeholder.png',
 		},
+		available: {
+			type: Boolean,
+			default: true,
+		},
 		hotel: { type: Schema.Types.ObjectId, ref: 'Hotel' },
 		bookings: [
 			{ type: Schema.Types.ObjectId, ref: 'Booking' },

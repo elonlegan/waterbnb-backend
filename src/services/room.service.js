@@ -27,10 +27,13 @@ async function getByHotelId(hotelId) {
 async function searchForBook(params) {
 	const rooms = await db.Room.find({
 		city: params.city,
-		hostMax: {
-			$gt: params.hostNumber,
+		maxHost: {
+			$gt: parseInt(params.hostNumber) - 1,
 		},
-	}).populate('bookings');
+		available: true,
+	})
+		.populate('bookings')
+		.populate('hotel');
 	return rooms;
 }
 async function getRoomTypes() {
