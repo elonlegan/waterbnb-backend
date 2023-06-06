@@ -62,6 +62,7 @@ function createSchema(req, res, next) {
 		price: Joi.number().min(1).required(),
 		maxHost: Joi.number().min(1).required(),
 		hotel: Joi.string().required(),
+		available: Joi.boolean().empty('').optional(),
 		imageUrl: Joi.string().empty('').optional(),
 		description: Joi.string().empty('').optional(),
 	});
@@ -85,6 +86,7 @@ function updateSchema(req, res, next) {
 		address: Joi.string().empty(''),
 		price: Joi.number().min(1).empty(''),
 		maxHost: Joi.number().min(1).empty(''),
+		available: Joi.boolean().empty(''),
 		imageUrl: Joi.string().empty(''),
 		description: Joi.string().empty(''),
 	});

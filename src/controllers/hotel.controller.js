@@ -32,6 +32,7 @@ function createSchema(req, res, next) {
 	const schema = Joi.object({
 		name: Joi.string().required(),
 		description: Joi.string().empty(''),
+		available: Joi.boolean().empty(''),
 		imageUrl: Joi.string().empty(''),
 		rooms: Joi.array().empty(''),
 	});
@@ -49,6 +50,7 @@ function updateSchema(req, res, next) {
 	const schema = Joi.object({
 		name: Joi.string().empty(''),
 		description: Joi.string().empty(''),
+		available: Joi.boolean().empty(''),
 		imageUrl: Joi.string().empty(''),
 		rooms: Joi.array().empty(''),
 	});
