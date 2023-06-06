@@ -10,7 +10,8 @@
 	"scripts": {
 		"start": "node src/index.js",
 		"dev": "nodemon src/index.js",
-		"test": "NODE_ENV=test jest --runInBand"
+		"test": "NODE_ENV=test jest --runInBand",
+		"vercel-build": "echo hello"
 	},
 	"dependencies": {
 		"bcryptjs": "^2.4.3",

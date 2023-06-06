@@ -40,3 +40,4 @@ typings
 # Environment variables
 *.env
 
+.vercel
