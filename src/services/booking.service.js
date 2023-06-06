@@ -1,4 +1,5 @@
 ﻿const db = require('../database');
+const sendEmail = require('../helpers/send-email');
 
 module.exports = {
 	getAll,
@@ -43,7 +44,7 @@ async function getByRoomId(hotelId) {
 	return bookings;
 }
 
-async function create(params, userId) {
+async function create(params, userId, origin) {
 	const booking = new db.Booking(params);
 
 	let room = await getRoom(params.room);
@@ -52,9 +53,13 @@ async function create(params, userId) {
 	booking.room = room;
 	room.bookings = [...room.bookings, booking];
 
-	await room.save();
+	// await room.save();
 	// save booking
 	await booking.save();
+
+	let user = await getUser(userId);
+
+	await sendBookingEmail(booking, user.email, origin);
 
 	return booking;
 }
@@ -94,7 +99,31 @@ async function getBooking(id) {
 }
 async function getRoom(id) {
 	if (!db.isValidId(id)) throw 'Room not found';
-	const room = await db.Room.findById(id);
+	const room = await db.Room.findById(id).populate('hotel');
 	if (!room) throw 'Room not found';
 	return room;
+}
+async function getUser(id) {
+	if (!db.isValidId(id)) throw 'User not found';
+	const user = await db.Account.findById(id);
+	if (!user) throw 'User not found';
+	return user;
+}
+
+async function sendBookingEmail(
+	booking,
+	userEmail,
+	origin
+) {
+	const bookingDetailUrl = `${origin}/bookings/detail/${booking.id}`;
+	let message = `<p>You can see your booking info here:</p>
+                   <p><a href="${bookingDetailUrl}">${bookingDetailUrl}</a></p>`;
+
+	await sendEmail({
+		to: userEmail,
+		subject: `Booking ${booking.room.hotel.name} Hotel`,
+		html: `<h4>Booking Successful  </h4>
+               <p>Thanks for booking in ${booking.room.name} room!</p>
+               ${message}`,
+	});
 }

@@ -56,7 +56,7 @@ function createSchema(req, res, next) {
 
 function create(req, res, next) {
 	bookingService
-		.create(req.body, req.user.id)
+		.create(req.body, req.user.id, req.get('origin'))
 		.then((booking) => res.json(booking))
 		.catch(next);
 }
