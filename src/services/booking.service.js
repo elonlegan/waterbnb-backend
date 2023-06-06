@@ -9,16 +9,27 @@ module.exports = {
 	delete: _delete,
 };
 
-async function getAll(userId) {
-	const bookings = await db.Booking.find({
-		$or: [
-			{ 'room.hotel.owner': userId },
-			{ owner: userId },
-		],
-	}).populate({
-		path: 'room',
-		populate: { path: 'hotel' },
-	});
+async function getAll(user) {
+	const bookings = (
+		await db.Booking
+			.find
+			// $or: [
+			// 	{ 'room.hotel.owner': user.id },
+			// 	{ owner: user.id },
+			// ],
+			()
+			.populate({
+				path: 'room',
+				// Get friends of friends - populate the 'friends' array for every friend
+				populate: { path: 'hotel' },
+			})
+	) // provisional todo: fix query at top
+		.filter(
+			(booking) =>
+				booking.room.hotel.owner == user.id ||
+				booking.owner == user.id
+		);
+
 	return bookings;
 }
 async function getById(id) {

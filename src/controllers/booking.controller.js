@@ -16,7 +16,7 @@ module.exports = {
 
 function getAll(req, res, next) {
 	bookingService
-		.getAll(req.user.id)
+		.getAll(req.user)
 		.then((bookings) => res.json(bookings))
 		.catch(next);
 }
