@@ -2,7 +2,7 @@
 
 Backend de aplicación web desktop utilizando el stack MEAN que permite a los usuarios operativos de
 AdsForGood reportar por semana las horas de dedicación a cada uno de los proyectos de la empresa
-![Image](https://i.postimg.cc/bND2bJYv/mockup-model-portfolio.png)
+![Image](https://i.postimg.cc/RhggLyRk/mockup-model-portfolio-3.png)
 
 ## Installation
 
@@ -12,7 +12,7 @@ AdsForGood reportar por semana las horas de dedicación a cada uno de los proyec
 
 3. Run MongoDB, instructions are available on the install page for each OS at [https://docs.mongodb.com/manual/administration/install-community/](https://docs.mongodb.com/manual/administration/install-community/).
 
-4. Download or clone the hotel source code from [https://github.com/elonlegan/Waterbnb-backend](https://github.com/elonlegan/Waterbnb-backend).
+4. Download or clone the hotel source code from [https://github.com/elonlegan/waterbnb-backend](https://github.com/elonlegan/waterbnb-backend).
 
 5. Install all required NPM packages by running `npm install` or `npm i` from the command line in the hotel root folder (where the package.json is located).
 
@@ -38,7 +38,7 @@ MONGODB_URI = 'MONGODB_URI'
 
 8. Start the API by running `npm start` (or `npm run dev` to start with nodemon) from the command line in the hotel root folder, you should see the message `Server listening on port 4000`.
 
-## [Frontend](https://github.com/elonlegan/Waterbnb-frontend)
+## [Frontend](https://github.com/elonlegan/waterbnb-frontend)
 
 ## License
 
