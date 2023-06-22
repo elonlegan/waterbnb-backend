@@ -2,11 +2,11 @@ const Role = require('../helpers/role');
 
 module.exports = [
 	{
-		label: 'Travel Agency',
-		key: Role.TravelAgency,
+		label: 'Pet Owner',
+		key: Role.PetOwner,
 	},
 	{
-		label: 'User',
-		key: Role.User,
+		label: 'Pet Walker',
+		key: Role.PetWalker,
 	},
 ];

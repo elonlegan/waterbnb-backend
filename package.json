@@ -1,11 +1,11 @@
 {
-	"name": "Waterbnb",
+	"name": "PetWalkr",
 	"version": "1.0.0",
 	"description": "",
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/elonlegan/Waterbnb-backend"
+		"url": "https://github.com/elonlegan/PetWalkr-backend"
 	},
 	"scripts": {
 		"start": "node src/index.js",

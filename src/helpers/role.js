@@ -1,5 +1,5 @@
 module.exports = {
 	Admin: 'Admin',
-	TravelAgency: 'TravelAgency',
-	User: 'User',
+	PetOwner: 'PetOwner',
+	PetWalker: 'PetWalker',
 };

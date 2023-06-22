@@ -1,4 +1,4 @@
-# Waterbnb-backend
+# PetWalkr-backend
 
 Backend de aplicación web desktop utilizando el stack MEAN que permite a los usuarios operativos de
 AdsForGood reportar por semana las horas de dedicación a cada uno de los proyectos de la empresa
