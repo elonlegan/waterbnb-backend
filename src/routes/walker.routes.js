@@ -9,40 +9,16 @@ const roomController = require('../controllers/walker.controller');
 // routes
 router.get('/', roomController.getAll);
 
-router.get('/walker-types', roomController.getRoomTypes);
-
-router.get(
-	'/search',
-	authorize(),
-	roomController.searchForBook
-);
-
-router.get('/:id', authorize(), roomController.getById);
-
-router.get(
-	'/hotel/:hotelId',
-	authorize([Role.Admin, Role.TravelAgency]),
-	roomController.getByHotelId
-);
-
-router.post(
-	'/',
-	authorize([Role.Admin, Role.TravelAgency]),
-	roomController.createSchema,
-	roomController.create
+router.put(
+	'/ask-verification/:id',
+	authorize([Role.Admin, Role.PetWalker]),
+	roomController.askForVerification
 );
 
 router.put(
-	'/:id',
-	authorize([Role.Admin, Role.TravelAgency]),
-	roomController.updateSchema,
-	roomController.update
-);
-
-router.delete(
-	'/:id',
-	authorize([Role.Admin, Role.TravelAgency]),
-	roomController.delete
+	'/verify/:id',
+	authorize([Role.Admin]),
+	roomController.verifyWalker
 );
 
 module.exports = router;
