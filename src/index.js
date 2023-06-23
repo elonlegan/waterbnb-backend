@@ -37,9 +37,7 @@ app.use(
 
 // api routes
 app.use('/accounts', require('./routes/account.routes'));
-app.use('/hotels', require('./routes/hotel.routes'));
-app.use('/rooms', require('./routes/room.routes'));
-app.use('/booking', require('./routes/booking.routes'));
+app.use('/walkers', require('./routes/walker.routes'));
 
 // global error handler
 app.use(errorHandler);

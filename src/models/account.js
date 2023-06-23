@@ -7,7 +7,20 @@ const schema = new Schema(
 		passwordHash: { type: String, required: true },
 		role: { type: String, required: true },
 		name: { type: String, required: true },
+		imageUrl: {
+			type: String,
+			default:
+				'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg',
+		},
 		acceptTerms: Boolean,
+		verificationRequested: {
+			type: Boolean,
+			default: false,
+		},
+		verifiedWalker: {
+			type: Boolean,
+			default: false,
+		},
 		role: { type: String, required: true },
 		verificationToken: String,
 		verified: Date,

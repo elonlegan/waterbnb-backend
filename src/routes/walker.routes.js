@@ -4,12 +4,12 @@ const authorize = require('../middleware/authorize');
 const Role = require('../helpers/role');
 
 // Controllers
-const roomController = require('../controllers/room.controller');
+const roomController = require('../controllers/walker.controller');
 
 // routes
 router.get('/', roomController.getAll);
 
-router.get('/room-types', roomController.getRoomTypes);
+router.get('/walker-types', roomController.getRoomTypes);
 
 router.get(
 	'/search',
